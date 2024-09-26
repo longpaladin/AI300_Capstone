@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <title>Predict TrustTelcom Customer Churn</title>
+</head>
+<body>
+    <div>
+        <h1>Predict TrustTelcom Customer Churn</h1>
+        <form method="POST">
+            <label for="num_dependents">Number of dependents:</label><br>
+            <input type="text" id="num_dependents" name="num_dependents" value="0"><br><br>
+
+            <label for="num_referrals">Number of referrals:</label><br>
+            <input type="text" id="num_referrals" name="num_referrals" value="0"><br><br>
+
+            <label for="tenure_months">Tenure months:</label><br>
+            <input type="text" id="tenure_months" name="tenure_months" value="0"><br><br>
+
+            <label for="total_monthly_fee">Total monthly fee:</label><br>
+            <input type="text" id="total_monthly_fee" name="total_monthly_fee" value="90.0"><br><br>
+
+            <label for="age">Age:</label><br>
+            <input type="text" id="age" name="age" value="40"><br><br>
+
+            <label for="contract_type">Contract Type:</label><br>
+                <select name="contract_type" id="contract_type">
+                <option value=""></option>
+                <option value="Month-to-Month">Month-to-Month</option>
+                <option value="One Year" selected>One Year</option>
+                <option value="Two Year" >Two Year</option>
+            </select><br><br>
+
+            <label for="city">City:</label><br>
+                <select name="city" id="city">
+                    <option value=""></option>
+                    {% for city in cities %}
+                        <option value="{{ city }}"">{{ city }}</option>
+                    {% endfor %}
+                </select><br><br>
+            
+            <input type="submit" value="Predict">
+        </form>
+
+        <!-- TODO 3: Add h2 element to display model prediction  -->
+        <!--         (Use Jinja templating with if condition)    -->
+        {% if prediction is defined %}
+            {% if prediction == 1 %}
+                <h2>Model Prediction: Customer WILL churn.</h2>
+            {% else %}
+                <h2>Model Prediction: Customer WILL NOT churn.</h2>
+            {% endif %}
+        {% endif %}
+    </div>
+</body>
+</html>
